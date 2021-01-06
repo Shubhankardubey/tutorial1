@@ -1,10 +1,16 @@
 import React, {Component} from "react";
 
 class Test extends React.Component{
+  
+  buttonClick = () => {
+    localStorage.setItem("logged", true)
+    this.props.click()
+  }
+
   render(){
     return (
       <div style={{padding:"10px"}}>
-        <button type="button" onClick={()=>this.props.changeName(Math.random())}>{this.props.btnName}</button>
+        <button type="button" onClick={()=>this.buttonClick()}>Click</button>
       </div>
     )
   }

@@ -9,20 +9,39 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      name:"Shubhankar",
-      btnName:"Hello"
+      value:"",
+      logged:[]
     }
+    // window.localStorage.setItem("shubh", JSON.stringify({hello:"world"}))
+    // console.log(JSON.parse(window.localStorage.getItem("shubh")).hello)
+    // window.localStorage.clear()
   }
 
-  changeStateName = (name) => {
-    this.setState({name:name, btnName:"world"})
+  componentWillMount(){
+    // if(JSON.parse(localStorage.getItem("logged"))){
+
+    // }
+    // this.setLogInValue()
+  }
+
+  // appi function call
+  // setState: {}
+
+
+  setLogInValue = () => {
+    this.setState({
+      logged:localStorage.getItem("logged") ? JSON.parse(localStorage.getItem("logged")) : false
+    },()=>{
+      this.componentWillMount()
+    })
   }
 
   render(){
     return (
       <div style={{padding:"40px"}}>
-        {this.state.name}
-        <Test btnName={this.state.btnName} changeName={this.changeStateName}/>
+        {this.state.logged ? "Log in " : "Logged out"}
+
+        <Test click={this.setLogInValue}/>
       </div>
     )
   }
