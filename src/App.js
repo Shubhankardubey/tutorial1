@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import ReactDom from "react-dom";
 import Test from "./testComponent";
+import {TransitionGroup} from 'react-transition-group';
 import './App.css';
 
 class App extends React.Component{
@@ -9,40 +10,43 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      value:"",
-      logged:[]
+      items:["Advanced", "Reactjs", "Angular", "JS"]
     }
-    // window.localStorage.setItem("shubh", JSON.stringify({hello:"world"}))
-    // console.log(JSON.parse(window.localStorage.getItem("shubh")).hello)
-    // window.localStorage.clear()
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
-  componentWillMount(){
-    // if(JSON.parse(localStorage.getItem("logged"))){
-
-    // }
-    // this.setLogInValue()
-  }
-
-  // appi function call
-  // setState: {}
-
-
-  setLogInValue = () => {
+  handleAdd(){
+    const newItems = this.state.items.concat([prompt("Enter Item name")])
     this.setState({
-      logged:localStorage.getItem("logged") ? JSON.parse(localStorage.getItem("logged")) : false
-    },()=>{
-      this.componentWillMount()
+      items: newItems
     })
   }
 
-  render(){
-    return (
-      <div style={{padding:"40px"}}>
-        {this.state.logged ? "Log in " : "Logged out"}
+  handleRemove(i){
+    let newItems = this.state.items.slice()
+    newItems.splice(i,1)
+    this.setState({
+      items: newItems
+    })
+  } 
 
-        <Test click={this.setLogInValue}/>
-      </div>
+  render(){
+    const items = this.state.items.map((item, i)=>{
+      <div key={i} onClick={()=>this.handleRemove(i)}>
+        {item}
+        </div>
+    })
+    return (
+      <div>
+        <button type="button" onClick={this.handleAdd}></button>
+        <TransitionGroup 
+        transitionName="example"
+        transitionEnterTimeout={800}
+        transitionLeaveTimeout={600}
+        >
+          {items}
+          </TransitionGroup>
+        </div>      
     )
   }
 }
