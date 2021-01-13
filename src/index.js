@@ -2,12 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Contact from './Contact';
+import About from './About';
+import NotFound from './notfound';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router,Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
+
+let value = false
+
+const routing = (
+  <Router>
+<div>
+  <Switch>
+  <Route exact path="/" component={App} />
+  <Route exact path="/about">
+  {value ? <Redirect to="/contact" /> : <About />}
+  </Route>
+  <Route exact path="/contact" component={Contact} />
+  <Route component={NotFound} />
+  </Switch>
+</div>
+  </Router>
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
