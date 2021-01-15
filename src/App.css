@@ -113,3 +113,12 @@ transition: all 400ms;
   background-color: #5a564c;
   transition: all 400ms;
 }
+
+.active{
+  color:black;
+  text-decoration: underline;
+}
+
+.deactive{
+  color:red;
+}
