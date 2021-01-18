@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import Contact from './Contact';
 import About from './About';
 import NotFound from './notfound';
@@ -80,8 +80,74 @@ import { func } from 'prop-types';
 //   )
 // }
 
+// const functionsCounter = new Set()
+
+const Counter =  () => {
+  // const [count, setCount] = useState(0)
+  // const [otherCounter, setOtherCounter] = useState(0)
+
+
+  // const increment = () => {
+  //   setCount(count + 1)
+  // }
+
+  // const increment = useCallback(
+  //   () => {
+  //     setCount(count + 1)
+  //   },
+  //   [count],
+  // )
+
+  // const decrement = useCallback(
+  //   () => {
+  //     setCount(count - 1)
+  //   },
+  //   [count],
+  // )
+
+  // const incrementOtherCounter = useCallback(
+  //   () => {
+  //     setOtherCounter(otherCounter + 1)
+  //   },
+  //   [otherCounter],
+  // )
+ 
+
+  // const decrement = () => {
+  //   setCount(count - 1)
+  // }
+
+  // const incrementOtherCounter = () => {
+  //   setOtherCounter(otherCounter + 1)
+  // }
+
+  // functionsCounter.add(increment)
+  // functionsCounter.add(decrement)
+  // functionsCounter.add(incrementOtherCounter)
+
+  // alert(functionsCounter)
+
+
+  const textInput = useRef();
+
+  function focusTestInput() {textInput.current.focus()}
+
+  return (
+    <>
+    {/* Count : {count}<br/>
+    <button onClick={increment}>+</button><br/>
+    <button onClick={decrement}>-</button><br/>
+    <button onClick={incrementOtherCounter}>incrementOtherCounter</button> */}
+    <input type="text" ref={textInput}/>
+    <button onClick={focusTestInput}>Focs text</button>
+    </>
+  )
+}
+
+
+
 ReactDOM.render(
-  <App/>,
+  <Counter/>,
   document.getElementById('root')
 );
 

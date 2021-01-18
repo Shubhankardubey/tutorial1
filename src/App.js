@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import './App.css';
 
-function useOffline(){
-  const [isOffline, setIsOffline] = useState(false)
+// function useOffline(){
+//   const [isOffline, setIsOffline] = useState(false)
 
-  useEffect(()=>{
-    window.addEventListener("offline", setIsOffline(true))
-    window.addEventListener("online", setIsOffline(false))
+//   useEffect(()=>{
+//     window.addEventListener("offline", setIsOffline(true))
+//     window.addEventListener("online", setIsOffline(false))
     
-  },[])
-  return isOffline
-}
+//   },[])
+//   return isOffline
+// }
 
-export default function App(){
-  const isOffline = useOffline()
-  return (
-    <div>
-    {isOffline ? <div>Sorry You are offline</div> : <div>You are online</div>} 
-    </div>
-  )
-};
+// export default function App(){
+//   const isOffline = useOffline()
+//   return (
+//     <div>
+//     {isOffline ? <div>Sorry You are offline</div> : <div>You are online</div>} 
+//     </div>
+//   )
+// };
