@@ -1,22 +1,26 @@
-import React, {useState, useEffect, useCallback} from "react";
-import './App.css';
+import React, { Component } from "react";
 
-// function useOffline(){
-//   const [isOffline, setIsOffline] = useState(false)
+const ThemeContext = React.createContext("light");
 
-//   useEffect(()=>{
-//     window.addEventListener("offline", setIsOffline(true))
-//     window.addEventListener("online", setIsOffline(false))
-    
-//   },[])
-//   return isOffline
-// }
+class App extends React.Component {
+  render() {
+    return <ThemeContext.Provider value="dark"><Toolbar></Toolbar></ThemeContext.Provider>;
+  }
+}
 
-// export default function App(){
-//   const isOffline = useOffline()
-//   return (
-//     <div>
-//     {isOffline ? <div>Sorry You are offline</div> : <div>You are online</div>} 
-//     </div>
-//   )
-// };
+function Toolbar(props){
+  return(
+    <div>
+      <ThemedButton></ThemedButton>
+      </div>
+  )
+}
+
+class ThemedButton extends React.Component{
+  static contextType = ThemeContext
+  render(){
+    return <button theme={this.contextType}/>
+  }
+}
+
+export default App;

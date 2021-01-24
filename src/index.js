@@ -1,9 +1,9 @@
 import React, {useCallback, useState, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 import Contact from './Contact';
-import About from './About';
+// import About from './About';
 import NotFound from './notfound';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, HashRouter} from 'react-router-dom';
@@ -147,7 +147,7 @@ const Counter =  () => {
 
 
 ReactDOM.render(
-  <Counter/>,
+  <App/>,
   document.getElementById('root')
 );
 
