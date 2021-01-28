@@ -1,25 +1,31 @@
 import React, { Component } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ThemeContext = React.createContext("light");
+const BtnColorContext = React.createContext('btn btn-darkyellow')
 
 class App extends React.Component {
   render() {
-    return <ThemeContext.Provider value="dark"><Toolbar></Toolbar></ThemeContext.Provider>;
+    return (
+      <BtnColorContext.Provider value="">
+        <Button />
+        </BtnColorContext.Provider>
+    )
   }
 }
 
-function Toolbar(props){
+function Button(props){
   return(
-    <div>
-      <ThemedButton></ThemedButton>
-      </div>
+    <BtnColorContext.Consumer>
+      {value => <div>{value}</div>}
+      </BtnColorContext.Consumer>
   )
 }
 
 class ThemedButton extends React.Component{
-  static contextType = ThemeContext
   render(){
-    return <button theme={this.contextType}/>
+    return <button className={this.context}>
+      welcome
+      </button>
   }
 }
 
